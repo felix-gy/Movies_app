@@ -18,11 +18,12 @@ def connectionDB():
   CLIENT_SECRET = secrets["secret"]
   auth_provider = PlainTextAuthProvider(CLIENT_ID, CLIENT_SECRET)
   cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
-  session = cluster.connect()
+  session = cluster.connect('movies_app')
+  
   # row = session.execute("select release_version from system.local").one()
 
   if session:
     # print(row[0])
-    return session
+    return [cluster, session]
   else:
     print("An error occurred.")

@@ -1,16 +1,18 @@
 from flask import Flask, render_template, request, redirect,url_for
+from queries.movies import *
 app = Flask(__name__)
-
-
-from queries.test import *
 
 
 @app.route('/')
 def index():
-    return render_template("BDII_index.html")
+    peliculas = all_movies()
+    return render_template('BDII_index.html', peliculas=peliculas)
 
-
-
+# Ruta para redirigir a Flask usando el ID de la película
+@app.route('/ver_pelicula/<uuid>')
+def ver_pelicula(uuid):
+    # Aquí puedes agregar lógica adicional según el ID de la película seleccionada
+    return f"Viendo la película con ID {uuid}"
 
 if __name__ == '__main__':
     app.run(debug=True)

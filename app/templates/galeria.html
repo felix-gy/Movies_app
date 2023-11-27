@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Películas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy4PugJhY4f5giBAe/gIhqS9An0rmhF+Il" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Galería de Películas</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Título</th>
+                    <th>ID</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pelicula in peliculas %}
+                    <tr>
+                        <td><img src="{{ pelicula.imagen }}" alt="{{ pelicula.titulo }}" style="max-width: 100px;"></td>
+                        <td>{{ pelicula.titulo }}</td>
+                        <td>{{ pelicula.id }}</td>
+                        <td><a href="{{ url_for('ver_pelicula', uuid=pelicula.id) }}" class="btn btn-primary">Ver Detalles</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js" integrity="sha384-J6GAZ3rFSq3WXjH7KxgNzDzPxr3j5FZ73FOpFpDShZAAeMltX+xlD3qN7lNuG4ks" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy4PugJhY4f5giBAe/gIhqS9An0rmhF+Il" crossorigin="anonymous"></script>
+</body>
+</html>
