@@ -7,7 +7,7 @@ from queries.test import *
 
 @app.route('/')
 def index():
-    return "test: "+ test_1()
+    return render_template("BDII_index.html")
 
 
 
