@@ -1,110 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Red Social - Foro de Películas</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
-  <style>
-    /* Estilos adicionales */
-    body {
-      padding-top: 50px;
-    }
-    .container {
-      padding: 20px;
-    }
-    .tab-pane {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Aplicación de Gestión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        // Función para cargar el contenido de las secciones sin recargar la página completa
+        function cargarContenido(url) {
+            // Utiliza Fetch API para obtener el contenido de la URL
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    // Actualiza el contenido del bloque principal con el contenido obtenido
+                    document.getElementById('contenido').innerHTML = data;
+                });
+        }
+    </script>
 </head>
 <body>
+    <header>
+        <h1>FORO DE PELICULAS</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="cargarContenido('{{ url_for('usuarios') }}'); return false;">Usuarios</a></li>
+                <li><a href="#" onclick="cargarContenido('{{ url_for('peliculas') }}'); return false;">Películas</a></li>
+                <li><a href="#" onclick="cargarContenido('{{ url_for('foro') }}'); return false;">Foro</a></li>
+                <li><a href="#" onclick="cargarContenido('{{ url_for('comentarios') }}'); return false;">Comentarios</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">Red Social de Películas</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#usuariosTab">Usuarios</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#peliculasTab">Películas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#foroTab">Foro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#comentariosTab">Comentarios</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#calificacionesTab">Calificaciones</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <main id="contenido">
+        <!-- Contenido de las secciones se cargará aquí -->
+        {% block content %}{% endblock %}
+    </main>
 
-<!-- Contenido de las pestañas -->
-<div class="container">
-  <div class="tab-content">
-    <!-- Pestaña de Usuarios -->
-    <div class="tab-pane" id="usuariosTab">
-      <!-- Contenido de la pestaña de Usuarios -->
-      <h2>Usuarios</h2>
-      <form>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
-
-        <label for="correo">Correo:</label>
-        <input type="email" id="correo" name="correo" required><br><br>
-
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" required><br><br>
-
-        <input type="submit" value="Registrar">
-      </form>
-      <!-- Aquí iría el contenido relacionado con los usuarios -->
-    </div>
-
-    <!-- Pestaña de Películas -->
-    <div class="tab-pane" id="peliculasTab">
-      <!-- Contenido de la pestaña de Películas -->
-      <h2>Películas</h2>
-      <!-- Aquí iría el contenido relacionado con las películas -->
-    </div>
-
-    <!-- Pestaña de Foro -->
-    <div class="tab-pane" id="foroTab">
-      <!-- Contenido de la pestaña de Foro -->
-      <h2>Foro</h2>
-      <!-- Aquí iría el contenido relacionado con el foro -->
-    </div>
-
-    <!-- Pestaña de Comentarios -->
-    <div class="tab-pane" id="comentariosTab">
-      <!-- Contenido de la pestaña de Comentarios -->
-      <h2>Comentarios</h2>
-      <!-- Aquí iría el contenido relacionado con los comentarios -->
-    </div>
-
-    <!-- Pestaña de Calificaciones -->
-    <div class="tab-pane" id="calificacionesTab">
-      <!-- Contenido de la pestaña de Calificaciones -->
-      <h2>Calificaciones</h2>
-      <!-- Aquí iría el contenido relacionado con las calificaciones -->
-    </div>
-  </div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<footer>
-    <p>&copy; 2023 Foro de Películas</p>
-</footer>
+    <footer>
+        <p>&copy; 2023 Foro</p>
+    </footer>
 </body>
 </html>
