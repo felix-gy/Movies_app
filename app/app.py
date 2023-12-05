@@ -6,13 +6,17 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     peliculas = all_movies()
+    print(peliculas)
     return render_template('BDII_index.html', peliculas=peliculas)
 
 # Ruta para redirigir a Flask usando el ID de la película
 @app.route('/ver_pelicula/<uuid>')
 def ver_pelicula(uuid):
+    return uuid
+    
+    # pelicula = movies_id(str(uuid))
     # Aquí puedes agregar lógica adicional según el ID de la película seleccionada
-    return f"Viendo la película con ID {uuid}"
+    #return render_template('info_pelicula.html', pelicula=pelicula)
 
 if __name__ == '__main__':
     app.run(debug=True)

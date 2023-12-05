@@ -1,4 +1,4 @@
-from conDB import *
+from Connection import *
 
 def test_1():
     con = connectionDB()
