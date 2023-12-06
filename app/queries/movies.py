@@ -1,4 +1,6 @@
 from Connection import *
+import uuid
+
 # from conDB import *
 
 
@@ -15,10 +17,19 @@ def all_movies():
             })
     return peliculas
 
-# def movies_id(uuid):
-#     con = connectionDB()
-#     query_pelicula = "SELECT id, titulo, descripcion, generos, fecha_estreno, imagen FROM peliculas WHERE id = %s"
-#     pelicula_result = con[0].execute(query_pelicula, (uuid,))
+def find_movie(uuid):
+    movie_details = None
+    with CassandraConnection() as session:
 
-#     return pelicula_result  # Ass
-
+        result = session.execute(f"SELECT * FROM peliculas WHERE id = {uuid}")
+        # prepared = session.prepare('SELECT * FROM peliculas WHERE id = ?;')
+        # #query = "SELECT * FROM peliculas WHERE id = %s;"
+        # obj = uuid.UUID(uuid)
+        # bound = prepared.bind([obj])
+        # print("aaa")
+        # print(uuid)
+        # rows = session.execute(bound)
+        for row in result:
+             movie_details = row
+             break
+    return result

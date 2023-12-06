@@ -99,10 +99,10 @@
                         <!-- <td><img src="{{ pelicula.imagen }}" alt="{{ pelicula.titulo }}" style="max-width: 100px;"></td> -->
                         <td>{{ pelicula.titulo }}</td>
                         <td>{{ pelicula.id }}</td>
-                        <td><a href="{{ url_for('ver_pelicula', uuid=pelicula.id) }}" class="btn btn-primary">Ver Detalles</a></td>
+                        <td> <a class="btn btn btn-primary" href="/ver_pelicula/{{ pelicula.id }}">Ver Detalles</a></td>
                     </tr>
                 {% endfor %}
-            </tbody>
+            </tbody>  
         </table>
     </div>
 
