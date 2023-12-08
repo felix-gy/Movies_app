@@ -18,6 +18,7 @@ class CassandraConnection:
     auth_provider = PlainTextAuthProvider(CLIENT_ID, CLIENT_SECRET)
     self.cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
     self.session = self.cluster.connect(self.keyspace)
+
   def __enter__(self):
     return self.session
 
