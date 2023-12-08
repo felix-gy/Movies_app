@@ -1,5 +1,5 @@
 # Movies_app
-### Instalación
+### Instalación y Ejecuciòn 
 
 ```bash
 git clone https://github.com/felix-gy/Movies_app.git
