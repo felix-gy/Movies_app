@@ -16,4 +16,4 @@ def ver_pelicula(uuid):
     return render_template('info_pelicula.html', info=info)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=8080,debug=True)
