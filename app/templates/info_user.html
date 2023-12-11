@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h2>Datos del Usuario</h2>
+        <p>Nombre: <span id="nombreUsuario">{{info['usuario']}}</span></p>
+        <p>Correo Electrónico: <span id="emailUsuario">{{info['email'] }}</span></p>
+        
+        <h2>Tus Comentarios:</h2>
+        {% for com in comments %}
+        <div id="comentarios">
+            <li>
+            <h3>{{ com.fecha_creacion }}</h1>
+            </li>
+            <p>{{ com.texto }}</p>
+            <span> <a class="btn btn btn-primary" href="/ver_pelicula/{{ com.pelicula_id }}">Ver Pelicula</a></span>
+        </div>
+        {% endfor %}
+            </body>
+</html>
